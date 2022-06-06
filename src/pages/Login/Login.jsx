@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
-import { SIGN_UP } from "../../Urls/Urls";
+import { useContext, useRef, useState } from "react";
+import { SIGN_IN } from "../../Urls/Urls";
 import { useNavigate } from "react-router-dom";
+import { authContext } from "../../context/Auth-context";
 import axios from "axios";
 import "./Login.css";
 const Login = () => {
@@ -11,11 +12,38 @@ const Login = () => {
   const [passwordValue, setPasswordValue] = useState("");
   //email and pass ref
   const history = useNavigate();
+  const authCTX = useContext(authContext);
   let email = useRef();
   let pass = useRef();
 
-  const loginHandler = () => {
-    console.log("login");
+  const loginHandler = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    axios
+      .post(
+        SIGN_IN,
+        {
+          email: email.current.value,
+          password: pass.current.value,
+          returnSecureToken: true,
+        },
+        {
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        setIsLoading(false);
+        return response.data;
+      })
+      .then((data) => {
+        const expireIn = new Date(
+          new Date().getTime() + +data.expiresIn * 1000
+        );
+        authCTX.login(data.idToken, expireIn);
+        history("/");
+      });
   };
 
   const linkToSignUp = (e) => {

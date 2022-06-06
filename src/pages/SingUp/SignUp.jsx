@@ -17,7 +17,6 @@ const SignUp = () => {
   let pass = useRef();
   const signUpHandler = (e) => {
     e.preventDefault();
-    console.log(SIGN_UP);
     setIsLoading(true);
     axios
       .post(
@@ -38,16 +37,14 @@ const SignUp = () => {
         return response.data;
       })
       .then((data) => {
-        console.log(data);
         const expireIn = new Date(
           new Date().getTime() + +data.expiresIn * 1000
         );
-        authCTX.login(data.idToken, expireIn);
+        authCTX.signUp(data.idToken, expireIn);
         history("/");
       })
       .catch((err) => {
         setIsLoading(false);
-        console.log(err);
       });
   };
   const linkToLogin = (e) => {

@@ -3,9 +3,8 @@ import { authContext } from "./context/Auth-context";
 import { useContext } from "react";
 function App() {
   const authCTX = useContext(authContext);
-  console.log("this is context : ", authCTX);
   return (
-    <div className="App">
+    <div className="row w-100" dir="rtl">
       <Routes />
     </div>
   );

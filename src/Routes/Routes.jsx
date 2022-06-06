@@ -1,5 +1,5 @@
 import { Routes as RT, Route } from "react-router-dom";
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../pages/Dashboard/Dashboard";
 import Login from "../pages/Login/Login";
 import Posts from "../pages/Posts";
 import SignUp from "../pages/SingUp/SignUp";
@@ -21,7 +21,7 @@ const Routes = () => {
         }
       >
         <Route
-          path="/posts"
+          path="posts"
           element={
             <ProtectedRoute user={isLoggedIn}>
               <Posts />

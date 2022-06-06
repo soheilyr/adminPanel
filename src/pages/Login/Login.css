@@ -1,5 +1,5 @@
 .form-signin {
-    max-width: 330px;
+    max-width: 330px !important;
     padding: 15px;
 }
 
