@@ -7,10 +7,12 @@ import NewPost from "../pages/NewPost/NewPost";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import { useContext } from "react";
 import { authContext } from "../context/Auth-context";
+import NotFound from "../pages/404/404";
 const Routes = () => {
   const { isLoggedIn } = useContext(authContext);
   return (
     <RT>
+      <Route path="*" element={<NotFound />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/Login" element={<Login />} />
       <Route
