@@ -1,0 +1,10 @@
+h1 {
+    font-size: 4.5rem !important;
+    font-weight: bold;
+}
+
+.not-found-container {
+    height: 100vh;
+    background-color: rgb(7, 7, 36);
+    color: white;
+}

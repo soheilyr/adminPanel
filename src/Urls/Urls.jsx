@@ -4,3 +4,5 @@ export const SIGN_UP =
 export const SIGN_IN =
   "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
   API_KEY;
+export const NEWPOSTS =
+  "https://admin-panel-479e2-default-rtdb.firebaseio.com/posts.json";
