@@ -1,0 +1,15 @@
+.show {
+    display: block;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    color: white;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.383);
+}
+
+.hide {
+    display: none;
+}

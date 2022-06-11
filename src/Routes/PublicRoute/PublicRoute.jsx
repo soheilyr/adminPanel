@@ -1,11 +1,12 @@
 import { Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { authContext } from "../../context/Auth-context";
-const ProtectedRoute = ({ children }) => {
+const PublicRoute = ({ children }) => {
   const { isLoggedIn } = useContext(authContext);
-  if (!isLoggedIn) {
-    return <Navigate to="/login" />;
+  if (isLoggedIn) {
+    <Navigate to="/Dashboard" />;
   }
   return children;
 };
-export default ProtectedRoute;
+
+export default PublicRoute;

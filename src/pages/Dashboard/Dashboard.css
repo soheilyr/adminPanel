@@ -1,9 +1,29 @@
 .dashboard-container {
-    background-color: rgb(6, 7, 24);
+
     color: white;
     height: 100vh;
     display: flex;
     flex-direction: column;
     position: relative;
     overflow-y: scroll;
+}
+
+#Light .dashboard-container {
+    background-color: white;
+    color: black;
+}
+
+#Dark .dashboard-container {
+    background-color: rgb(6, 7, 24);
+    color: #fff;
+}
+
+.content-container {
+    background-color: rgb(244, 248, 255);
+    padding-right: 15px !important;
+    padding-left: 35px !important;
+}
+
+#Dark .content-container {
+    background-color: rgb(60 55 98);
 }
