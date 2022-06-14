@@ -11,6 +11,7 @@ const NewPostForm = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(titleValue);
+
     props.handleSubmit(
       titleValue.current.value,
       category.current.value,

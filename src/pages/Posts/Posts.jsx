@@ -70,7 +70,6 @@ const Posts = () => {
       })
       .then();
   }, []);
-
   const postsList = posts.map((item) => {
     return (
       <SinglePost
