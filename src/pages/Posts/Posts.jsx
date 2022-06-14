@@ -1,5 +1,5 @@
 import { Table } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import SinglePost from "../../components/SinglePost/SinglePost";
@@ -8,39 +8,21 @@ import Card from "../../UI/Card/Card";
 import { NEWPOSTS } from "../../Urls/Urls";
 import EditPosts from "../../components/EditPosts/EditPosts";
 import "./Posts.css";
+import { postsContext } from "../../context/posts/Posts-context";
+
 const Posts = () => {
-  const [posts, setPosts] = useState([]);
+  const postsCTX = useContext(postsContext);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [postTitle, setPostTitle] = useState("");
   const [postCategory, setPostCategory] = useState("");
   const [postContent, setPostContent] = useState("");
   const [postId, setPostId] = useState(0);
-  const reqDelete = (targetLoc) => {
-    axios.delete(
-      `https://admin-panel-479e2-default-rtdb.firebaseio.com/posts/${targetLoc}.json`
-    );
-  };
 
-  const removePostHandler = (id) => {
+  const handleShowDeleteModal = (state, id, title) => {
+    setShowDeleteModal(state);
     setPostId(id);
     setPostTitle(title);
-    setShowDeleteModal(true);
-    let posts;
-    let targetLoc;
-    axios
-      .get(NEWPOSTS)
-      .then((response) => response.data)
-      .then((data) => {
-        posts = Object.assign({}, data);
-      })
-      .then(() => {
-        targetLoc = Object.keys(posts).find((key) => posts[key].id === id);
-      })
-      .then(() => {
-        console.log(targetLoc);
-        reqDelete(targetLoc);
-      });
   };
 
   const hideDeleteModalHandler = () => {
@@ -55,26 +37,11 @@ const Posts = () => {
     setShowModal(true);
   };
 
-  useEffect(() => {
-    axios
-      .get("https://admin-panel-479e2-default-rtdb.firebaseio.com/posts.json")
-      .then((response) => {
-        return response.data;
-      })
-      .then((data) => {
-        let newPosts = [...posts];
-        Object.values(data).forEach((item) => {
-          newPosts.push(item);
-        });
-        setPosts(newPosts);
-      })
-      .then();
-  }, []);
-  const postsList = posts.map((item) => {
+  const postsList = postsCTX.posts.map((item) => {
     return (
       <SinglePost
+        handleShow={handleShowDeleteModal}
         edit={editModalHandler}
-        remove={removePostHandler}
         key={item.id}
         id={item.id}
         content={item.content}
@@ -109,9 +76,8 @@ const Posts = () => {
         category={postCategory}
       />
       <DeletePost
-        removePostHandler={removePostHandler}
         show={showDeleteModal}
-        hide={hideDeleteModalHandler}
+        handleShow={handleShowDeleteModal}
         id={postId}
         title={postTitle}
       />

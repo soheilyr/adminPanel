@@ -1,5 +1,5 @@
 import Routes from "./Routes";
-import { themeContext } from "./context/Theme-context";
+import { themeContext } from "./context/Theme/Theme-context";
 import { useContext } from "react";
 function App() {
   const { theme } = useContext(themeContext);

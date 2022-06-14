@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { useContext } from "react";
-import { authContext } from "../../context/Auth-context";
+import { authContext } from "../../context/Auth/Auth-context";
 const PublicRoute = ({ children }) => {
   const { isLoggedIn } = useContext(authContext);
   if (isLoggedIn) {

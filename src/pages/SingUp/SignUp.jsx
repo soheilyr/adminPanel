@@ -3,7 +3,7 @@ import { SIGN_UP } from "../../Urls/Urls";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SignUp.css";
-import { authContext } from "../../context/Auth-context";
+import { authContext } from "../../context/Auth/Auth-context";
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   //email and pass ref

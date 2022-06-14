@@ -5,8 +5,9 @@ const SinglePost = (props) => {
     props.edit(props.id, props.title, props.category, props.content);
   };
   const removePostHandler = (e) => {
+    console.log("sgle post props", props);
     e.preventDefault();
-    props.remove(props.id, props.title);
+    props.handleShow(true, props.id, props.title);
   };
   return (
     <>

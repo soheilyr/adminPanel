@@ -1,13 +1,14 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { NEWPOSTS } from "../../Urls/Urls";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NewPostForm from "./NewPostForm/NewPostForm";
+import { postsContext } from "../../context/posts/Posts-context";
 const NewPost = () => {
   let history = useNavigate();
-
+  const postCTX = useContext(postsContext);
   const [loading, setLoading] = useState(false);
 
   const notify = () =>
@@ -27,12 +28,14 @@ const NewPost = () => {
 
   const handleSubmitPost = (title, category, content) => {
     if (title && category && content) {
+      const newPostID = Math.floor(Math.random() * 100000);
+      postCTX.addPostHandler(newPostID, title, category, content);
       setLoading(true);
       axios
         .post(
           NEWPOSTS,
           {
-            id: Math.floor(Math.random() * 100000),
+            id: newPostID,
             title,
             category,
             content,
