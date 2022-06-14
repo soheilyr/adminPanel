@@ -1,0 +1,20 @@
+.dashboard-items ul {
+    list-style: none;
+
+}
+
+.dashboard-items a {
+    display: inline-block;
+
+    text-decoration: none;
+    margin: 12px 0;
+    font-size: 17px;
+}
+
+#Light .dashboard-items a {
+    color: black;
+}
+
+#Dark .dashboard-items a {
+    color: white;
+}

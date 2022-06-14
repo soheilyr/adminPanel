@@ -1,10 +1,10 @@
-import Routes from "./Routes/Routes";
-import { authContext } from "./context/Auth-context";
+import Routes from "./Routes";
+import { themeContext } from "./context/Theme-context";
 import { useContext } from "react";
 function App() {
-  const authCTX = useContext(authContext);
+  const { theme } = useContext(themeContext);
   return (
-    <div className="row w-100" dir="rtl">
+    <div className="row w-100" dir="rtl" id={theme}>
       <Routes />
     </div>
   );

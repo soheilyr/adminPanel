@@ -1,0 +1,11 @@
+#light .label {
+    color: black;
+}
+
+.label {
+    margin-bottom: 7px;
+}
+
+#Dark .label {
+    color: white;
+}

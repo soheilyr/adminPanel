@@ -6,10 +6,6 @@ import axios from "axios";
 import "./Login.css";
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
-  // email input value
-  const [emailValue, setEmailValue] = useState("");
-  //pass input value
-  const [passwordValue, setPasswordValue] = useState("");
   //email and pass ref
   const history = useNavigate();
   const authCTX = useContext(authContext);
@@ -56,23 +52,11 @@ const Login = () => {
       <h1 className="text-center mt-5">Please Log in</h1>
       <form className="form-signin w-100 m-auto" onSubmit={loginHandler}>
         <div className="form-floating">
-          <input
-            className="form-control"
-            ref={email}
-            value={emailValue}
-            onChange={(e) => setEmailValue(e.target.value)}
-            type="email"
-          />
+          <input className="form-control" ref={email} type="email" />
           <label>Email address</label>
         </div>
         <div className="form-floating">
-          <input
-            className="form-control"
-            ref={pass}
-            value={passwordValue}
-            onChange={(e) => setPasswordValue(e.target.value)}
-            type="password"
-          />
+          <input className="form-control" ref={pass} type="password" />
           <label>password</label>
         </div>
 
