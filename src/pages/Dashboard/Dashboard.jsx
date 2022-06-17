@@ -4,9 +4,9 @@ import DashboardHead from "../../components/DashboardHead/DashboardHead";
 import DashboardItems from "../../components/DashboardItems/DashboardItems";
 import Logout from "../../components/Logout/Logout";
 import { useContext } from "react";
-import { authContext } from "../../context/Auth-context";
+import { authContext } from "../../context/Auth/Auth-context";
 import ReactSwitch from "react-switch";
-import { themeContext } from "../../context/Theme-context";
+import { themeContext } from "../../context/Theme/Theme-context";
 const Dashboard = () => {
   const authCTX = useContext(authContext);
   const themeCTX = useContext(themeContext);

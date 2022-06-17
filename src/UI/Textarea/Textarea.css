@@ -1,0 +1,19 @@
+.textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 12px;
+    height: 150px;
+}
+
+#Dark .textarea {
+    border: 1px solid white;
+    color: white;
+    background-color: transparent;
+}
+
+#Light .textarea {
+    border: 1px solid lightgray;
+    color: black;
+    background-color: white;
+}
