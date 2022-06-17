@@ -23,18 +23,15 @@ const Posts = () => {
     setShowDeleteModal(state);
     setPostId(id);
     setPostTitle(title);
+    console.log("this is the id & title :", id, title);
   };
 
-  const hideDeleteModalHandler = () => {
-    setShowDeleteModal(false);
-  };
-
-  const editModalHandler = (id, title, category, content) => {
+  const editModalHandler = (state, id, title, category, content) => {
     setPostId(id);
     setPostTitle(title);
     setPostCategory(category);
     setPostContent(content);
-    setShowModal(true);
+    setShowEditModal(state);
   };
 
   const postsList = postsCTX.posts.map((item) => {
@@ -50,26 +47,33 @@ const Posts = () => {
       />
     );
   });
+  console.log("this is posts lenght: ", postsList);
+
   return (
     <Card>
       <Link to="new" className="btn my-3 btn-success">
         ADD
       </Link>
-      <Table bordered size="sm">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Content</th>
-            <th className="text-center">Actions</th>
-          </tr>
-        </thead>
-        <tbody>{postsList}</tbody>
-      </Table>
+      {postsList.length === 0 ? (
+        <p className="text-center">... No post to show</p>
+      ) : (
+        <Table bordered size="sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Content</th>
+              <th className="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>{postsList}</tbody>
+        </Table>
+      )}
+
       <EditPosts
+        handleshow={editModalHandler}
         show={showEditModal}
-        hide={hideDeleteModalHandler}
         id={postId}
         title={postTitle}
         content={postContent}

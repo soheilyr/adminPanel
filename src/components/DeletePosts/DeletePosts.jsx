@@ -2,11 +2,10 @@ import { useContext } from "react";
 import { postsContext } from "../../context/posts/Posts-context";
 import Modal from "../../UI/Modal/Modal";
 import axios from "axios";
+import Button from "../../UI/Button/Button";
 import { NEWPOSTS } from "../../Urls/Urls";
 const DeletePost = (props) => {
   const postCTX = useContext(postsContext);
-  console.log(postCTX);
-  console.log("function ran this is the props", props);
   const reqDelete = (targetLoc, id) => {
     axios
       .delete(
@@ -15,7 +14,6 @@ const DeletePost = (props) => {
       .then(postCTX.removePostHandler(id))
       .then(props.handleShow(false));
   };
-  console.log(props);
   const removePostHandler = (id, title) => {
     let posts;
     let targetLoc;
@@ -35,17 +33,23 @@ const DeletePost = (props) => {
   return (
     <div>
       <Modal show={props.show}>
-        <div className="align-items-center justify-content-center h-100  w-25 m-auto">
-          <p>Are you sure you want to delete {`${props.title}`} post ?</p>
-          <button onClick={() => removePostHandler(props.id)}>Delete</button>
-          <button
+        <div className="align-items-center justify-content-center h-100 ">
+          <p>? Are you sure you want to delete {`${props.title}`} post </p>
+          <Button
+            className="danger mx-2"
+            onClick={() => removePostHandler(props.id)}
+          >
+            Delete
+          </Button>
+          <Button
+            className="success"
             onClick={(e) => {
               e.preventDefault();
               props.handleShow(false);
             }}
           >
             cancel
-          </button>
+          </Button>
         </div>
       </Modal>
     </div>
