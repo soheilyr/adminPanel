@@ -2,10 +2,9 @@ import "./SinglePost.css";
 const SinglePost = (props) => {
   const editPostHandler = (e) => {
     e.preventDefault();
-    props.edit(props.id, props.title, props.category, props.content);
+    props.edit(true, props.id, props.title, props.category, props.content);
   };
   const removePostHandler = (e) => {
-    console.log("sgle post props", props);
     e.preventDefault();
     props.handleShow(true, props.id, props.title);
   };

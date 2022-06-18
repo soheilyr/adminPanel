@@ -10,7 +10,14 @@ const initialState = {
 export const postsContext = createContext(initialState);
 const PostsProvider = (props) => {
   const [posts, setPosts] = useState([]);
-  const editPostHandler = () => {};
+
+  const editPostHandler = (id, title, category, content) => {
+    const targetPost = [...posts];
+    const targetPostIndex = targetPost.findIndex((item) => item.id === id);
+    targetPost[targetPostIndex] = { id, title, category, content };
+    setPosts(targetPost);
+  };
+
   const removePostHandler = (id) => {
     console.log("this is the id : ", id);
     let postsAfterRemove = [...posts];
